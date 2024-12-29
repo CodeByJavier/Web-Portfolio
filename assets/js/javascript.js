@@ -78,4 +78,74 @@ document.addEventListener("mousemove", (event) => {
      linter.style.top = `${limitedY}px`;
 });
 
+//-------------------------------------------------------------------------------------------------------------//
 
+// EFECTO DESENCOQUE
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Manejo de las cajas principales (Boxes)
+
+    const boxes = document.querySelectorAll(".box");
+    const subBoxes = document.querySelectorAll(".sub_box");
+
+    const applyBlurEffect = (box, subBoxIndexesToLight, subBoxIndexesToBlur) => {
+        box.style.filter = "blur(0px)";
+
+        // Añadir efecto 'light' a las subcajas específicas
+        subBoxIndexesToLight.forEach((index) => {
+            subBoxes[index].classList.add('light');
+        });
+
+        // Aplicar efecto blur a las subcajas específicas
+        subBoxIndexesToBlur.forEach((index) => {
+            subBoxes[index].style.filter = "blur(1.5px)";
+        });
+
+        // Limpiar efectos 'light' y 'blur' cuando el mouse sale de la caja
+        box.addEventListener("mouseout", () => {
+            subBoxIndexesToLight.forEach((index) => {
+                subBoxes[index].classList.remove('light');
+            });
+            subBoxIndexesToBlur.forEach((index) => {
+                subBoxes[index].style.filter = "blur(0)";
+            });
+        });
+    };
+
+    boxes.forEach((box, index) => {
+        box.addEventListener("mouseover", () => {
+            switch (index) {
+                case 0:
+                    applyBlurEffect(box, [0, 1], [2, 3, 4, 5]);
+                    break;
+                case 1:
+                    applyBlurEffect(box, [2, 3], [0, 1, 4, 5]);
+                    break;
+                case 2:
+                    applyBlurEffect(box, [4, 5], [0, 1, 2, 3]);
+                    break;
+                default:
+                    break;
+            }
+        });
+    });
+
+    // Manejo de las imágenes en el skill_box
+    const skillImages = document.querySelectorAll("#skill_box img");
+
+    skillImages.forEach((image) => {
+        image.addEventListener("mouseover", () => {
+            skillImages.forEach((img) => {
+                if (img !== image) {
+                    img.style.filter = "blur(1.5px)";
+                }
+            });
+        });
+
+        image.addEventListener("mouseout", () => {
+            skillImages.forEach((img) => {
+                img.style.filter = "none";
+            });
+        });
+    });
+});

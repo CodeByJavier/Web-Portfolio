@@ -412,7 +412,6 @@ html{
     font-size: 30px;
     text-align: center;
     margin: 0 auto 20px;
-    background-color: var(--color-texto2);
     padding: 32px;
     border: #ffffff17 solid 1px;
     box-shadow: 0px 0px 12px rgba(161, 161, 161, 0.274);
@@ -466,7 +465,6 @@ html{
         width: 110px;
         height: 110px;
         margin-bottom: 20px;
-        transition: background-color 0.3s linear ;
     }
 
     .description{
@@ -477,17 +475,20 @@ html{
         justify-content: center;
         flex-direction: column;
         padding: 10px;    
-        transition: background-color 0.3s linear ;
     }
 
-    .description:hover{
+    .sub_box{
+        transition: all 0.3s linear ;
+    }
+
+    .light{
         background-color: rgba(255, 255, 255, 0.139);
+        transform: scale(1.02); 
     }
-    .circle_box:hover{
-        background-color: var(--color-texto);
+    .filter{
+        filter: blur(1.2px);
+        transform: scale(0.9);
     }
-
-    /*JS*/
 }
 
 
@@ -536,11 +537,20 @@ html{
     margin: 30px;
     width: 54px;
     height: 54px;
-    transition: background-color 0.3s linear ;
+    transition: all 0.3s linear ;
 }
 
 #experience #skill_box img:hover{
     background-color: rgba(255, 255, 255, 0.139);
+}
+
+.skill-box-item.blur {
+    filter: blur(1.2px);
+    transform: scale(0.9);
+}
+
+.skill-box-item.light {
+    transform: scale(1.1); 
 }
 
 /* SECTION EXPERIENCE RESPONSIVE */
