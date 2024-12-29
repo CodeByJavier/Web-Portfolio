@@ -278,7 +278,7 @@ html{
 }
 
 .hero h1 {
-    font-size: clamp(1.8rem, 5vw, 3rem); /* Título principal */
+    font-size: clamp(1.8rem, 5vw, 3rem);
 }
 
 .hero .span_web {

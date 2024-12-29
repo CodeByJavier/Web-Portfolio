@@ -3,53 +3,50 @@
 const menuBtn = document.getElementById("bar");
 const menuContainer = document.getElementById("about_me")
 
-let isOpen = false;
 
 // Función para controlar el estado del menú en función del tamaño de la ventana
 const ajustarMenu = () => {
-    // Verificar el ancho de la ventana
     const anchoVentana = window.innerWidth;
     
     // Si el ancho de la ventana es mayor a 860px, mostrar el menú como 'flex'
     if (anchoVentana > 860) {
-      // Aseguramos que el menú sea visible (si es que no está en 'none')
-      if (menuContainer.style.display === 'none') {
-        menuContainer.style.display = 'flex';
-      }
+        // Aseguramos que el menú sea visible (si es que no está en 'none')
+        if (menuContainer.style.display === 'none' || menuContainer.style.display === '') {
+            menuContainer.style.display = 'flex';
+        }
     } else {
-      // Si el ancho es menor o igual a 860px, dejamos que el menú sea ocultado por el botón
-      if (menuContainer.style.display !== 'flex') {
-        menuContainer.style.display = 'none';
-      }
+        // Si el ancho es menor o igual a 860px, dejamos que el menú sea ocultado por el botón
+        if (menuContainer.style.display === 'flex') {
+            menuContainer.style.display = 'none';
+        }
     }
-  };
+};
   
-  // Evento de clic para abrir y cerrar el menú
+// Evento de clic para abrir y cerrar el menú
 menuBtn.addEventListener("click", () => {
     // Mostrar o esconder el menú desplegable
     if (menuContainer.style.display === 'flex') {
-      // Cerramos el menú con animación inversa
+        // Cerramos el menú con animación inversa
         menuContainer.classList.add('animate_reverse');
         menuContainer.classList.remove('animate');
-        // Esperamos a que termine la animación antes de esconder el menú
+  
         setTimeout(() => {
-        menuContainer.style.display = 'none'; // Después de la animación, ocultamos el menú
-        }, 600); // Asegúrate de que el tiempo coincida con la duración de la animación
+            menuContainer.style.display = 'none'; // Después de la animación, ocultamos el menú
+            menuContainer.classList.remove('animate_reverse');
+        }, 600);
     } else {
-      menuContainer.style.display = 'flex';
-      // Abrimos el menú con animación
-      menuContainer.classList.add('animate');
-      menuContainer.classList.remove('animate_reverse');
+        menuContainer.style.display = 'flex';
+        // Abrimos el menú con animación
+        menuContainer.classList.add('animate');
+        menuContainer.classList.remove('animate_reverse');
     }
 });
 
+// Ejecutamos la función de ajuste al cargar la página y al redimensionar
+window.addEventListener('resize', ajustarMenu);
+// Aseguramos que el menú se ajuste correctamente desde el inicio
+ajustarMenu(); 
 
-  
-// Llamamos a ajustarMenu cuando se redimensione la ventana
-window.addEventListener("resize", ajustarMenu);
-  
-// Llamamos a ajustarMenu al cargar la página para asegurarnos de que el menú esté en el estado adecuado
-window.addEventListener("load", ajustarMenu);
 
 //-------------------------------------------------------------------------------------------------------------//
 
